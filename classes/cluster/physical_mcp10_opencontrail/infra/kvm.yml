@@ -25,8 +25,8 @@ parameters:
     cluster_node03_address: ${_param:infra_compute_node03_address}
     keepalived_vip_interface: br_ctl
     keepalived_vip_virtual_router_id: 69
-    deploy_nic: enp2s0f0
-    primary_first_nic: enp2s0f1
+    deploy_nic: enp3s0f0
+    primary_first_nic: enp3s0f1
     primary_second_nic: enp5s0f0
   salt:
     control:
