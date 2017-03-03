@@ -1,5 +1,5 @@
 classes:
-- cluster.physical_mcp10_non_dvr.infra.config
+- cluster.physical_mcp10_master.infra.config
 parameters:
   _param:
     linux_system_codename: xenial
@@ -7,4 +7,4 @@ parameters:
   linux:
     system:
       name: cfg01
-      domain: mcp10-non-dvr.local
+      domain: mcp10-master.local

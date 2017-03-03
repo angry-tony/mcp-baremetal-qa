@@ -1,0 +1,27 @@
+classes:
+- system.linux.system.single
+- system.openssh.server.team.tcpcloud
+parameters:
+  _param:
+    cluster_domain: mcp10-master.local
+    reclass_data_revision: master
+    cluster_name: physical_mcp10_master
+    cluster_public_host: master-name
+    infra_config_hostname: cfg01
+    # infra service addresses
+    infra_config_address: 172.17.32.194
+    #Interface definitions
+    linux_dhcp_interface:
+      enabled: true
+      type: eth
+      proto: dhcp
+    linux_single_interface:
+      enabled: true
+      type: eth
+      proto: static
+      address: ${_param:single_address}
+      netmask: 255.255.255.0
+      gateway: 10.167.4.1
+      name_servers:
+        - 8.8.8.8
+        - 8.8.4.4
