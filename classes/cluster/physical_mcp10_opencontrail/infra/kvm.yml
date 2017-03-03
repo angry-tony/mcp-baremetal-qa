@@ -145,13 +145,13 @@ parameters:
           - ${_param:primary_second_nic}
           slaves: ${_param:primary_first_nic} ${_param:primary_second_nic}
           mode: active-backup
-        bond0.2422:
+        bond0.2428:
           enabled: true
           proto: manual
           type: vlan
           use_interfaces:
           - bond0
-        bond0.2423:
+        bond0.2429:
           enabled: true
           proto: manual
           type: vlan
@@ -164,13 +164,13 @@ parameters:
           address: ${_param:single_address}
           netmask: 255.255.255.0
           use_interfaces:
-          - bond0.2422
+          - bond0.2428
         br_data:
           enabled: true
           type: bridge
           proto: manual
           use_interfaces:
-          - bond0.2423
+          - bond0.2429
     system:
       package:
         linux-image-4.8.0-39-generic:
