@@ -19,9 +19,9 @@ parameters:
     cluster_node03_address: ${_param:openstack_control_node03_address}
     opencontrail_compute_address: ${_param:single_address}
     nova_vncproxy_url: http://${_param:openstack_proxy_address}:6080
-    deploy_nic: enp5s0f0
-    primary_first_nic: enp5s0f1
-    primary_second_nic: enp2s0f0
+    deploy_nic: enp3s0f0
+    primary_first_nic: enp3s0f1
+    primary_second_nic: enp5s0f1
   linux:
     network:
       interface:
@@ -58,18 +58,19 @@ parameters:
           mtu: 9000
         bond0.2428:
           enabled: true
-          proto: static
-          type: vlan
-          use_interfaces:
-          - bond0
-          address: ${_param:control_address}
-          netmask: 255.255.255.0
-        bond0.2429:
-          enabled: true
+        #  proto: static
           proto: manual
           type: vlan
           use_interfaces:
           - bond0
+          # address: ${_param:control_address}
+          # netmask: 255.255.255.0
+        # bond0.2429:
+        #   enabled: true
+        #   proto: manual
+        #   type: vlan
+        #   use_interfaces:
+        #   - bond0
         vhost0:
           enabled: true
           type: eth
@@ -78,10 +79,9 @@ parameters:
           netmask: 255.255.255.0
           pre_up_cmds:
           - /usr/lib/contrail/if-vhost0
-          post_up_cmds:
-          - ip link set vhost0 address 90:e2:ba:19:c2:19
           use_interfaces:
-          - bond0.2429
+  #        - bond0.2429
+          - bond0.2428
           name_servers:
           - 8.8.8.8
           - 8.8.4.4
