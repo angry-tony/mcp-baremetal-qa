@@ -23,7 +23,7 @@ parameters:
   linux:
     network:
       interface:
-        ens4: ${_param:linux_single_interface}
+        ens3: ${_param:linux_single_interface}
   elasticsearch:
     server:
       master: true

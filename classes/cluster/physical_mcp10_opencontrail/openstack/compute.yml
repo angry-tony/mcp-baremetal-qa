@@ -37,7 +37,7 @@ parameters:
           master: bond0
           mtu: 9000
           pre_up_cmds:
-          - /sbin/ethtool --offload eth6 rx off tx off tso off gro off
+          - /sbin/ethtool --offload ${_param:primary_first_nic} rx off tx off tso off gro off
         eth2:
           enabled: true
           name: ${_param:primary_second_nic}
@@ -45,7 +45,7 @@ parameters:
           master: bond0
           mtu: 9000
           pre_up_cmds:
-          - /sbin/ethtool --offload eth7 rx off tx off tso off gro off
+          - /sbin/ethtool --offload ${_param:primary_second_nic} rx off tx off tso off gro off
         bond0:
           enabled: true
           proto: manual
