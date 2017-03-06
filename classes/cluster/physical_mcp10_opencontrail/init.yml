@@ -3,6 +3,7 @@
 classes:
 - system.linux.system.single
 - system.openssh.server.team.tcpcloud
+- system.openssh.server.team.mcp_qa
 - cluster.physical_mcp10_opencontrail.infra
 - cluster.physical_mcp10_opencontrail.openstack
 - cluster.physical_mcp10_opencontrail.opencontrail
