@@ -59,12 +59,12 @@ parameters:
           net_profile: default
         opencontrail.control:
           cpu: 8
-          ram: 16384
+          ram: 8192
           disk_profile: small
           net_profile: opencontrail
         opencontrail.analytics:
           cpu: 8
-          ram: 16384
+          ram: 8192
           disk_profile: large
           net_profile: default
         stacklight.log:
@@ -79,7 +79,7 @@ parameters:
           net_profile: default
         stacklight.telemetry:
           cpu: 4
-          ram: 4096
+          ram: 2048
           disk_profile: xxlarge
           net_profile: default
       cluster:
