@@ -125,12 +125,6 @@ parameters:
           type: vlan
           use_interfaces:
           - bond0
-        bond0.2417:
-          enabled: true
-          proto: manual
-          type: vlan
-          use_interfaces:
-          - bond0
         br_ctl:
           enabled: true
           type: bridge
@@ -139,12 +133,6 @@ parameters:
           netmask: 255.255.255.0
           use_interfaces:
           - bond0.2416
-        br_data:
-          enabled: true
-          type: bridge
-          proto: manual
-          use_interfaces:
-          - bond0.2417
     system:
       package:
         linux-image-4.8.0-39-generic:

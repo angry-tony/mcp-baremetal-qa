@@ -46,7 +46,7 @@ parameters:
         br-prv:
           enabled: true
           type: ovs_bridge
-        br-mgmt:
+        br_ctl:
           enabled: true
           type: ovs_port
           bridge: br-floating

@@ -3,8 +3,6 @@ classes:
 - system.linux.system.repo.mcp10
 
 - system.linux.system.repo.saltstack_2016_3_trusty
-- system.nova.compute.nfv.hugepages
-- system.nova.compute.nfv.cpu_pinning
 - system.nova.compute.cluster
 - system.neutron.compute.cluster
 - system.ceilometer.agent.cluster
@@ -20,8 +18,8 @@ parameters:
     cluster_node03_hostname: ctl03
     cluster_node03_address: ${_param:openstack_control_node03_address}
     nova_vncproxy_url: http://${_param:openstack_proxy_address}:6080
-    primary_second_nic: enp2s0f0
-    primary_first_nic: enp2s0f1
+    primary_second_nic: enp5s0f0
+    primary_first_nic: enp3s0f1
     linux_system_codename: xenial
   neutron:
     compute:
@@ -56,17 +54,23 @@ parameters:
           enabled: true
           type: vlan
           proto: static
-          address: ${_param:control_address}
+          address: ${_param:single_address}
           netmask: 255.255.255.0
           mtu: 9000
           use_interfaces:
           - bond0
-        br_data:
+        bond0.2409:
+          enabled: true
+          type: vlan
+          proto: manual
+          mtu: 9000
+          use_interfaces:
+          - bond0
+        br-mesh:
           enabled: true
           type: bridge
-          proto: static
-          mtu: 9000
           address: ${_param:tenant_address}
           netmask: 255.255.255.0
+          mtu: 9000
           use_interfaces:
-          - bond0.2417
+          - bond0.2409

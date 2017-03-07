@@ -12,24 +12,19 @@ parameters:
     cluster_vip_address: ${_param:openstack_control_address}
 
     linux_system_codename: xenial
-    keepalived_vip_interface: br_ctl
+    keepalived_vip_interface: br-ctl
     keepalived_vip_virtual_router_id: 69
-    deploy_second_nic: enp2s0f0
-    primary_first_nic: enp2s0f1
+    primary_second_nic: enp2s0f0
+    primary_first_nic: eno2
   linux:
     network:
       bridge: openvswitch
-        primary_second_nic:
-          name: ${_param:primary_second_nic}
-          enabled: true
-          type: slave
-          mtu: 9000
-          master: bond0
+      interface:
         primary_first_nic:
-          name: ${_param:primary_first_nic}
           enabled: true
           type: slave
-          mtu: 9000
+          proto: manual
+          name: ${_param:primary_first_nic}
           master: bond0
         bond0:
           enabled: true
@@ -38,15 +33,13 @@ parameters:
           ovs_type: OVSPort
           type: bond
           use_interfaces:
-          - ${_param:primary_second_nic}
           - ${_param:primary_first_nic}
-          slaves: ${_param:primary_second_nic} ${_param:primary_first_nic}
+          slaves: ${_param:primary_first_nic}
           mode: active-backup
-          mtu: 9000
         br-floating:
           enabled: true
           type: ovs_bridge
-        br_ctl:
+        br-ctl:
           enabled: true
           type: ovs_port
           bridge: br-floating
@@ -54,7 +47,7 @@ parameters:
           ovs_options: tag=2408
           address: ${_param:single_address}
           netmask: 255.255.255.0
-        br_data:
+        br-mesh:
           enabled: true
           type: ovs_port
           bridge: br-floating
@@ -62,6 +55,7 @@ parameters:
           ovs_options: tag=2409
           address: ${_param:tenant_address}
           netmask: 255.255.255.0
+
 ##FIXME
   # linux:
   #   network:

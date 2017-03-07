@@ -15,7 +15,7 @@ classes:
 - system.salt.control.cluster.stacklight_server_cluster
 - system.salt.control.cluster.stacklight_log_cluster
 - system.salt.control.cluster.stacklight_telemetry_cluster
-- cluster.physical_mcp10_ovs_non_dvr
+- cluster.physical_mcp10_non_dvr
 parameters:
   _param:
     linux_system_codename: xenial
@@ -23,10 +23,11 @@ parameters:
     cluster_node01_address: ${_param:infra_compute_node01_address}
     cluster_node02_address: ${_param:infra_compute_node02_address}
     cluster_node03_address: ${_param:infra_compute_node03_address}
-    keepalived_vip_interface: br_ctl
+    keepalived_vip_interface: br-ctl
     keepalived_vip_virtual_router_id: 69
-    deploy_nic: eno1
-    primary_first_nic: eno2
+    deploy_nic: enp2s0f0
+    primary_second_nic: enp5s0f0
+    primary_first_nic: enp2s0f1
   salt:
     control:
       size: #RAM 4096,8192,16384,32768,65536
@@ -37,13 +38,13 @@ parameters:
           disk_profile: small
           net_profile: default
         openstack.database:
-          cpu: 4
-          ram: 4096
+          cpu: 6
+          ram: 8192
           disk_profile: large
           net_profile: default
         openstack.message_queue:
-          cpu: 4
-          ram: 4096
+          cpu: 6
+          ram: 8192
           disk_profile: small
           net_profile: default
         openstack.telemetry:
@@ -52,7 +53,7 @@ parameters:
           disk_profile: xxlarge
           net_profile: default
         openstack.proxy:
-          cpu: 2
+          cpu: 4
           ram: 4096
           disk_profile: small
           net_profile: default
@@ -80,10 +81,10 @@ parameters:
     nic:
       default:
         eth1:
-          bridge: br_mgm
+          bridge: br-mgm
           model: virtio
         eth0:
-          bridge: br_ctl
+          bridge: br-ctl
           model: virtio
   linux:
     network:
@@ -96,16 +97,22 @@ parameters:
           master: bond0
         eth2:
           enabled: true
+          type: slave
+          proto: manual
+          name: ${_param:primary_second_nic}
+          master: bond0
+        eth3:
+          enabled: true
           type: eth
           proto: manual
           name: ${_param:deploy_nic}
-        br_mgm:
+        br-mgm:
           enabled: true
           proto: static
           type: bridge
           address: ${_param:deploy_address}
           netmask: 255.255.255.192
-          gateway: 172.16.49.1
+          gateway: 172.16.164.129
           name_servers:
           - 8.8.8.8
           - 8.8.4.4
@@ -117,34 +124,23 @@ parameters:
           type: bond
           use_interfaces:
           - ${_param:primary_first_nic}
-          slaves: ${_param:primary_first_nic}
+          - ${_param:primary_second_nic}
+          slaves: ${_param:primary_first_nic} ${_param:primary_second_nic}
           mode: active-backup
-        bond0.2416:
+        bond0.2408:
           enabled: true
           proto: manual
           type: vlan
           use_interfaces:
           - bond0
-        bond0.2417:
-          enabled: true
-          proto: manual
-          type: vlan
-          use_interfaces:
-          - bond0
-        br_ctl:
+        br-ctl:
           enabled: true
           type: bridge
           proto: static
           address: ${_param:single_address}
           netmask: 255.255.255.0
           use_interfaces:
-          - bond0.2416
-        br_data:
-          enabled: true
-          type: bridge
-          proto: manual
-          use_interfaces:
-          - bond0.2417
+          - bond0.2408
     system:
       package:
         linux-image-4.8.0-39-generic:
@@ -155,11 +151,11 @@ parameters:
           version: latest
         linux-headers-4.8.0-39:
           version: latest
-      user:
-        root:
-          enabled: true
-          name: root
-          home: /root
+#      user:
+#        root:
+#          enabled: true
+#          name: root
+#          home: /root
           # Password is cloudlab, comment out, configure your SSH key bellow
           # and disable password auth
-          password: $6$0Qqj.6l.$T9k9Onm9pIDo6ULABVBRNogyizG.9CnwQ4bvI4xH.AWeIGHbLyFU87ejMTtKvAAyd3dncRYbeUV.VbnXJU2u./
+#          password: $6$0Qqj.6l.$T9k9Onm9pIDo6ULABVBRNogyizG.9CnwQ4bvI4xH.AWeIGHbLyFU87ejMTtKvAAyd3dncRYbeUV.VbnXJU2u./
