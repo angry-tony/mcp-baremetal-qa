@@ -5,7 +5,7 @@ classes:
 - system.linux.system.repo.tcp_extra
 - system.linux.system.repo.saltstack_2016_3_trusty
 - system.neutron.gateway.cluster
-- cluster.physical_mcp10_ovs_dpdk
+- cluster.physical_mcp10_non_dvr
 parameters:
   _param:
     interface_mtu: 1500
@@ -14,21 +14,22 @@ parameters:
     linux_system_codename: xenial
     keepalived_vip_interface: br_ctl
     keepalived_vip_virtual_router_id: 69
-    deploy_nic: enp2s0f0
+    deploy_second_nic: enp2s0f0
     primary_first_nic: enp2s0f1
-  neutron:
-    gateway:
-      backend:
-        tenant_vlan_range: "${_param:neutron_tenant_vlan_range}"
   linux:
     network:
       bridge: openvswitch
-      interface:
-        primary_first_nic:
+        primary_second_nic:
+          name: ${_param:primary_second_nic}
           enabled: true
           type: slave
-          proto: manual
+          mtu: 9000
+          master: bond0
+        primary_first_nic:
           name: ${_param:primary_first_nic}
+          enabled: true
+          type: slave
+          mtu: 9000
           master: bond0
         bond0:
           enabled: true
@@ -37,36 +38,30 @@ parameters:
           ovs_type: OVSPort
           type: bond
           use_interfaces:
+          - ${_param:primary_second_nic}
           - ${_param:primary_first_nic}
-          slaves: ${_param:primary_first_nic}
+          slaves: ${_param:primary_second_nic} ${_param:primary_first_nic}
           mode: active-backup
+          mtu: 9000
         br-floating:
           enabled: true
           type: ovs_bridge
-        br-prv:
-          enabled: true
-          type: ovs_bridge
-        br-mgmt:
+        br_ctl:
           enabled: true
           type: ovs_port
           bridge: br-floating
           proto: static
-          ovs_options: tag=2416
+          ovs_options: tag=2408
           address: ${_param:single_address}
           netmask: 255.255.255.0
-        floating-to-prv:
+        br_data:
           enabled: true
           type: ovs_port
-          port_type: patch
           bridge: br-floating
-          peer: prv-to-floating
-        prv-to-floating:
-          enabled: true
-          type: ovs_port
-          port_type: patch
-          bridge: br-prv
-          peer: floating-to-prv
-
+          proto: static
+          ovs_options: tag=2409
+          address: ${_param:tenant_address}
+          netmask: 255.255.255.0
 ##FIXME
   # linux:
   #   network:

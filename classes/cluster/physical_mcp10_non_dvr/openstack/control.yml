@@ -15,7 +15,7 @@ classes:
 - system.glusterfs.client.cluster
 - system.glusterfs.client.volume.glance
 - system.glusterfs.client.volume.keystone
-- cluster.physical_mcp10_ovs_dpdk
+- cluster.physical_mcp10_non_dvr
 parameters:
   _param:
     keepalived_vip_interface: eth1
@@ -29,11 +29,6 @@ parameters:
     cluster_node03_hostname: ctl03
     cluster_node03_address: ${_param:openstack_control_node03_address}
     nova_vncproxy_url: http://${_param:openstack_proxy_address}:6080
-  neutron:
-    server:
-      dpdk: True
-      backend:
-        tenant_vlan_range: "${_param:neutron_tenant_vlan_range}"
   linux:
     network:
       interface:

@@ -15,7 +15,7 @@ classes:
 - system.salt.control.cluster.stacklight_server_cluster
 - system.salt.control.cluster.stacklight_log_cluster
 - system.salt.control.cluster.stacklight_telemetry_cluster
-- cluster.physical_mcp10_ovs_dpdk
+- cluster.physical_mcp10_ovs_non_dvr
 parameters:
   _param:
     linux_system_codename: xenial
