@@ -5,9 +5,9 @@ classes:
 - system.salt.minion.cert.proxy
 - cluster.physical_mcp10_opencontrail
 parameters:
-  _param:
-    nginx_proxy_ssl:
-      enabled: true
-      authority: mk_lab_ca
-      engine: salt
-      mode: secure
+  # _param:
+  #   nginx_proxy_ssl:
+  #     enabled: true
+  #     authority: mk_lab_ca
+  #     engine: salt
+  #     mode: secure

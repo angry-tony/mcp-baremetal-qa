@@ -15,7 +15,7 @@ parameters:
     stacklight_environment: ${_param:cluster_domain}
     reclass_data_revision: master
     cluster_name: physical_mcp10_non_dvr
-    cluster_public_host: 10.167.4.10
+    cluster_public_host: ${_param:openstack_proxy_address}
     infra_config_hostname: cfg01
     ##local repositiry for aptly
     #local_repo_url: ip_address

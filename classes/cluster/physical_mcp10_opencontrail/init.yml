@@ -16,7 +16,7 @@ parameters:
     stacklight_environment: ${_param:cluster_domain}
     reclass_data_revision: master
     cluster_name: physical_mcp10_opencontrail
-    cluster_public_host: public-name
+    cluster_public_host: ${_param:openstack_proxy_address}
     infra_config_hostname: cfg01
     ##local repositiry for aptly
     #local_repo_url: ip_address
@@ -148,6 +148,9 @@ parameters:
     openstack_compute_node01_hostname: cmp001
     openstack_compute_node02_hostname: cmp002
     openstack_compute_node03_hostname: cmp003
+
+    openstack_gateway_node01_hostname: gtw01
+    openstack_gateway_node01_address: 10.167.4.200
 
     ##CI/CD
     #infra_integration_node01_single_address:

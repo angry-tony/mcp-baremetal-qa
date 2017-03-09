@@ -3,7 +3,7 @@
 classes:
 - system.linux.system.single
 - system.openssh.server.team.tcpcloud
-- system.openssh.server.team.mcp_qa
+- cluster.physical_mcp10_ovs_dpdk._team
 - cluster.physical_mcp10_ovs_dpdk.infra
 - cluster.physical_mcp10_ovs_dpdk.openstack
 - cluster.physical_mcp10_ovs_dpdk.stacklight
@@ -14,8 +14,8 @@ parameters:
     cluster_domain: mcp10-ovs-dpdk.local
     stacklight_environment: ${_param:cluster_domain}
     reclass_data_revision: master
-    cluster_name: physical_mcp10_ovs_dpdk
-    cluster_public_host: 10.167.4.10
+    cluster_name: mcp10_ovs_dpdk
+    cluster_public_host: ${_param:openstack_proxy_address}
     infra_config_hostname: cfg01
     ##local repositiry for aptly
     #local_repo_url: ip_address

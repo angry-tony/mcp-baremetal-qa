@@ -5,6 +5,7 @@ classes:
 - system.linux.system.repo.saltstack_2016_3_trusty
 - system.nova.compute.nfv.hugepages
 - system.nova.compute.nfv.cpu_pinning
+- system.neutron.compute.nfv.dpdk
 - system.nova.compute.cluster
 - system.neutron.compute.cluster
 - system.ceilometer.agent.cluster
@@ -19,50 +20,17 @@ parameters:
     cluster_node02_address: ${_param:openstack_control_node02_address}
     cluster_node03_hostname: ctl03
     cluster_node03_address: ${_param:openstack_control_node03_address}
-    nova_vncproxy_url: http://${_param:openstack_proxy_address}:6080
+    nova_vncproxy_url: https://${_param:openstack_proxy_address}:6080
     primary_first_bond0_nic: eth0
     primary_second_bond0_nic: eth1
     linux_system_codename: xenial
   neutron:
     compute:
-      dpdk: True
       backend:
         tenant_vlan_range: "${_param:neutron_tenant_vlan_range}"
   linux:
     network:
-      bridge: openvswitch
-      dpdk:
-        enabled: true
-        driver: uio
-      openvswitch:
-        pmd_cpu_mask: "0x6"
-        dpdk_socket_mem: "1024"
-        dpdk_lcore_mask: "0x400"
-        memory_channels: "2"
       interface:
-        primary_first_bond1_nic:
-          name: ${_param:primary_first_bond1_nic}
-          enabled: true
-          type: slave
-          master: bond1
-        primary_second_bond1_nic:
-          name: ${_param:primary_second_bond1_nic}
-          enabled: true
-          type: slave
-          master: bond1
-        bond1:
-          enabled: true
-          proto: manual
-          ovs_bridge: br-prv
-          ovs_type: OVSPort
-          type: bond
-          use_interfaces:
-          - ${_param:primary_second_bond1_nic} ${_param:primary_first_bond1_nic}
-          slaves: ${_param:primary_first_bond1_nic}
-          mode: active-backup
-        br-prv:
-          enabled: true
-          type: ovs_bridge
         dpdk0:
           name: ${_param:dpdk0_name}
           pci: ${_param:dpdk0_pci}
