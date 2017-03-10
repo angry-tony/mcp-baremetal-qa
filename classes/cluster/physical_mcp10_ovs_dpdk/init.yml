@@ -14,7 +14,7 @@ parameters:
     cluster_domain: mcp10-ovs-dpdk.local
     stacklight_environment: ${_param:cluster_domain}
     reclass_data_revision: master
-    cluster_name: mcp10_ovs_dpdk
+    cluster_name: physical_mcp10_ovs_dpdk
     cluster_public_host: ${_param:openstack_proxy_address}
     infra_config_hostname: cfg01
     ##local repositiry for aptly
