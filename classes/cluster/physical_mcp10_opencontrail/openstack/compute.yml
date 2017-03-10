@@ -1,10 +1,11 @@
 classes:
-
 - system.linux.system.repo.mcp10
 
 - system.linux.system.repo.mcp_contrail
 - system.nova.compute.cluster
 - system.opencontrail.compute.cluster
+- system.opencontrail.client.cluster
+- system.opencontrail.client.resource.virtual_router
 - system.ceilometer.agent.cluster
 - cluster.physical_mcp10_opencontrail
 parameters:
