@@ -93,9 +93,9 @@ parameters:
             control_address: ${_param:openstack_compute_node02_control_address}
             single_address: ${_param:openstack_compute_node02_single_address}
             tenant_address: ${_param:openstack_compute_node02_tenant_address}
-            dpdk0_name: enp5s0f0
-            dpdk1_name: enp5s0f1
+            dpdk0_name: eth2
+            dpdk1_name: eth4
             dpdk0_pci: '"0000:05:00.1"'
-            dpdk1_pci: '"0000:05:00.0"'
-            primary_first_bond1_nic: enp5s0f0
-            primary_second_bond1_nic: enp5s0f1
+            dpdk1_pci: '"0000:0b:00.0"'
+            primary_first_bond1_nic: eth2
+            primary_second_bond1_nic: eth4
