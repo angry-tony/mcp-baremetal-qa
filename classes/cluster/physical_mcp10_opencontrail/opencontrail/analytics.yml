@@ -1,11 +1,12 @@
 classes:
-- system.linux.system.repo.mos92
+- system.linux.system.repo.mcp10
 - system.linux.system.repo.saltstack_2016_3_trusty
 - system.linux.system.repo.mcp_contrail
 
 - system.opencontrail.control.analytics
 - system.opencontrail.client.cluster
 - system.opencontrail.client.resource.analytics_node
+- system.opencontrail.client.resource.database_node
 - cluster.physical_mcp10_opencontrail
 parameters:
   _param:
