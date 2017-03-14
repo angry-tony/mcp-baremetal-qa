@@ -1,5 +1,6 @@
 classes:
 - system.linux.system.single
+- system.openssh.server.team.lab
 - system.openssh.server.team.tcpcloud
 - system.openssh.server.team.mcp_qa
 parameters:
