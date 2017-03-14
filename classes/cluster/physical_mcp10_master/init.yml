@@ -1,6 +1,7 @@
 classes:
 - system.linux.system.single
 - system.openssh.server.team.tcpcloud
+- system.openssh.server.team.mcp_qa
 parameters:
   _param:
     cluster_domain: mcp10-master.local
