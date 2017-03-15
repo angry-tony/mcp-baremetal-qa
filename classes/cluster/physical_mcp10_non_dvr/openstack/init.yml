@@ -7,8 +7,8 @@ parameters:
     neutron_control_dvr: False
     neutron_tenant_network_types: "flat,vxlan"
     neutron_l3_ha: True
-    neutron_global_physnet_mtu: 9000
-    neutron_external_mtu: 9000
+    neutron_global_physnet_mtu: 1500
+    neutron_external_mtu: 1500
     neutron_gateway_dvr: False
     neutron_gateway_agent_mode: legacy
     neutron_compute_dvr: False
