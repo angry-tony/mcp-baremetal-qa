@@ -4,6 +4,8 @@ classes:
 
 - system.linux.system.repo.saltstack_2016_3_trusty
 - system.nova.compute.cluster
+- system.nova.compute.nfv.hugepages
+- system.nova.compute.nfv.cpu_pinning
 - system.neutron.compute.cluster
 - system.ceilometer.agent.cluster
 - cluster.physical_mcp10_non_dvr
