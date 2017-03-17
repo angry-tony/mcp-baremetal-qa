@@ -35,14 +35,17 @@ parameters:
         infra_compute_node01:
           params:
             keepalived_vip_priority: 100
+            linux_system_codename: xenial
             deploy_nic: enp3s0f0
             primary_first_nic: enp3s0f1
         infra_compute_node02:
           params:
             keepalived_vip_priority: 101
+            linux_system_codename: xenial
         infra_compute_node03:
           params:
             keepalived_vip_priority: 102
+            linux_system_codename: xenial
         openstack_telemetry_node01:
           params:
             linux_system_codename: xenial
