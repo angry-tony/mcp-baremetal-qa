@@ -1,7 +1,6 @@
 classes:
 - service.keepalived.cluster.single
-- system.linux.system.repo.mos9
-
+- system.linux.system.repo.mcp10
 - system.glusterfs.server.volume.glance
 - system.glusterfs.server.volume.keystone
 - system.glusterfs.server.cluster
