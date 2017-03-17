@@ -1,5 +1,6 @@
 classes:
 - system.designate.server.cluster
+- system.bind.server.single
 - cluster.physical_mcp10_opencontrail_nfv
 parameters:
   _param:
@@ -15,3 +16,38 @@ parameters:
     network:
       interface:
         ens3: ${_param:linux_single_interface}
+  designate:
+    server:
+      backend:
+        bind9:
+          rndc_key: Q27CeyBm9+o6jW6EApkQ9t1KUblTjw==        
+  bind:
+    server:
+      key:
+        designate:
+          secret: "Q27CeyBm9+o6jW6EApkQ9t1KUblTjw=="
+          algorithm: hmac-sha512
+      allow-new-zones: true
+      query: true
+      control:
+        local:
+          enabled: true
+          bind:
+            address: 127.0.0.1
+            port: 935
+          allow:
+            - 127.0.0.1
+            - ${_param:single_address}
+          keys:
+            - designate 
+  client:
+    enabled: true
+    option:
+      default:
+        server: 127.0.0.1
+        port: 953
+        key: designate
+    key:
+      designate:
+        secret: "Q27CeyBm9+o6jW6EApkQ9t1KUblTjw=="
+        algorithm: hmac-sha512
