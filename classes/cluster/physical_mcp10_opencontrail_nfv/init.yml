@@ -10,6 +10,7 @@ classes:
 - cluster.physical_mcp10_opencontrail_nfv.opencontrail
 - cluster.physical_mcp10_opencontrail_nfv.stacklight
 - cluster.physical_mcp10_opencontrail_nfv.stacklight.client
+- cluster.nfv-lab.cicd
 parameters:
   _param:
     openstack_version: mitaka
@@ -105,6 +106,12 @@ parameters:
     openstack_compute_node02_control_address: 10.167.4.102
     openstack_compute_node03_control_address: 10.167.4.103
 
+    # CICD
+    cicd_control_address: 10.167.4.90
+    cicd_control_node01_address: 10.167.4.91
+    cicd_control_node02_address: 10.167.4.92
+    cicd_control_node03_address: 10.167.4.93
+
     # openstack service hostnames
     openstack_proxy_hostname: prx
     openstack_proxy_node01_hostname: prx01
@@ -157,7 +164,11 @@ parameters:
     openstack_gateway_node01_hostname: gtw01
     openstack_gateway_node01_address: 10.167.4.200
 
-
+    cicd:
+    cicd_control_hostname: cid
+    cicd_control_node01_hostname: cid01
+    cicd_control_node02_hostname: cid02
+    cicd_control_node03_hostname: cid03
     ##CI/CD
     #infra_integration_node01_single_address:
     #infra_version_control_node01_single_address:
