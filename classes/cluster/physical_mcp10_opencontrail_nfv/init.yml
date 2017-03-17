@@ -10,7 +10,7 @@ classes:
 - cluster.physical_mcp10_opencontrail_nfv.opencontrail
 - cluster.physical_mcp10_opencontrail_nfv.stacklight
 - cluster.physical_mcp10_opencontrail_nfv.stacklight.client
-- cluster.nfv-lab.cicd
+- cluster.physical_mcp10_opencontrail_nfv.cicd
 parameters:
   _param:
     openstack_version: mitaka
