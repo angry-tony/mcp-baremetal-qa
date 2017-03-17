@@ -1,6 +1,6 @@
 classes:
 
-- system.linux.system.repo.mos9
+- system.linux.system.repo.mcp10
 - system.linux.system.repo.saltstack_2016_3_trusty
 - service.keepalived.cluster.single
 - system.glusterfs.server.volume.glance
