@@ -18,56 +18,7 @@ parameters:
     cluster_node03_hostname: ctl03
     cluster_node03_address: ${_param:openstack_control_node03_address}
     nova_vncproxy_url: http://${_param:openstack_proxy_address}:6080
-<<<<<<< HEAD
     deploy_nic: eth0	
-#    primary_interface: eth0
-#    external_interface: eth1
-##FIXME
-  # linux:
-  #   network:
-  #     bridge: openvswitch
-  #     interface:
-  #       primary_second_nic:
-  #         name: ${_param:primary_second_nic}
-  #         enabled: true
-  #         type: slave
-  #         mtu: 9000
-  #         master: bond0
-  #       bond0:
-  #         enabled: true
-  #         proto: manual
-  #         type: bond
-  #         use_interfaces:
-  #         - ${_param:primary_second_nic}
-  #         slaves: ${_param:primary_second_nic}
-  #         mode: active-backup
-  #         mtu: 9000
-  #       bond0.1800:
-  #         enabled: true
-  #         type: vlan
-  #         proto: static
-  #         address: ${_param:single_address}
-  #         netmask: 255.255.255.0
-  #         mtu: 9000
-  #         use_interfaces:
-  #         - bond0
-  #       bond0.1801:
-  #         enabled: true
-  #         type: vlan
-  #         proto: manual
-  #         mtu: 9000
-  #         use_interfaces:
-  #         - bond0
-  #       br-mesh:
-  #         enabled: true
-  #         type: bridge
-  #         address: ${_param:tenant_address}
-  #         netmask: 255.255.255.0
-  #         mtu: 9000
-  #         use_interfaces:
-  #         - bond0.1801
-=======
-    deploy_nic: eth0
     primary_first_nic: eth1
     primary_second_nic: eth2
   linux:
@@ -134,4 +85,3 @@ parameters:
           port_type: patch
           bridge: br-prv
           peer: floating-to-prv
->>>>>>> 393b4fa2da610977c21608a58bfb68536481d7d2
