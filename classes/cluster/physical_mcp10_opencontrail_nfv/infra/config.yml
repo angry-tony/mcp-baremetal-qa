@@ -47,6 +47,7 @@ parameters:
           params:
             keepalived_vip_priority: 102
             linux_system_codename: xenial
+            primary_second_nic: enp3s0f0
         openstack_control_node01:
           classes:
           - cluster.${_param:cluster_name}.openstack.control_init
