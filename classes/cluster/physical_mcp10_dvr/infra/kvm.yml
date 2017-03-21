@@ -3,7 +3,7 @@ classes:
 - service.keepalived.cluster.single
 - system.linux.system.repo.mcp10
 
-- system.linux.system.repo.saltstack_2016_3_trusty
+- system.linux.system.repo.saltstack_2016_3_xenial
 - system.glusterfs.server.volume.glance
 - system.glusterfs.server.volume.keystone
 - system.glusterfs.server.cluster
@@ -25,6 +25,9 @@ parameters:
     cluster_node03_address: ${_param:infra_compute_node03_address}
     keepalived_vip_interface: br-ctl
     keepalived_vip_virtual_router_id: 69
+    deploy_nic: eth0
+    primary_first_nic: eth1
+    primary_second_nic: eth2
   salt:
     control:
       size:

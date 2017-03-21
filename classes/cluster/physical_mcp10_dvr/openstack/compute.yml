@@ -2,7 +2,7 @@ classes:
 
 - system.linux.system.repo.mcp10
 
-- system.linux.system.repo.saltstack_2016_3_trusty
+- system.linux.system.repo.saltstack_2016_3_xenial
 - system.nova.compute.cluster
 - system.neutron.compute.cluster
 - system.ceilometer.agent.cluster
@@ -18,7 +18,7 @@ parameters:
     cluster_node03_hostname: ctl03
     cluster_node03_address: ${_param:openstack_control_node03_address}
     nova_vncproxy_url: http://${_param:openstack_proxy_address}:6080
-    deploy_nic: eth0	
+    deploy_nic: eth0
     primary_first_nic: eth1
     primary_second_nic: eth2
   linux:
