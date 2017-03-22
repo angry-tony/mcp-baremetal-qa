@@ -1,6 +1,6 @@
 classes:
 - service.git.client
-- system.linux.system.repo.tcp_salt
+- system.linux.system.repo.mcp.salt
 - system.openssh.client.lab
 - system.salt.master.pkg
 - system.salt.minion.ca.salt_master

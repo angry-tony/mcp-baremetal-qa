@@ -1,9 +1,9 @@
 classes:
 
 - service.keepalived.cluster.single
-- system.linux.system.repo.mcp10
-
-- system.linux.system.repo.saltstack_2016_3_xenial
+- system.linux.system.repo.mcp.openstack
+- system.linux.system.repo.mcp.extra
+- system.linux.system.repo.saltstack.xenial
 - system.glusterfs.server.volume.glance
 - system.glusterfs.server.volume.keystone
 - system.glusterfs.server.cluster

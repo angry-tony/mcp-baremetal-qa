@@ -1,4 +1,7 @@
 classes:
+- system.linux.system.repo.mcp.openstack
+- system.linux.system.repo.mcp.extra
+- system.linux.system.repo.saltstack.trusty
 - cluster.physical_mcp10_ovs_dpdk
 parameters:
   linux:

@@ -1,4 +1,5 @@
 classes:
+- system.linux.system.repo.mcp.extra
 - cluster.physical_mcp10_dvr
 parameters:
   linux:
