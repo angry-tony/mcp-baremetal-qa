@@ -8,8 +8,6 @@ classes:
   - system.glusterfs.client.volume.mysql
   - system.glusterfs.client.volume.registry
  #- system.glusterfs.client.volume.salt
-  # Jenkins
-  - system.jenkins.client.user.admin
   # Docker
   - system.docker.host
   # Docker services
