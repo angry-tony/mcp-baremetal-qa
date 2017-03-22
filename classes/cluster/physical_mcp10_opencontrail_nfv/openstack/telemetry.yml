@@ -1,6 +1,7 @@
 classes:
-- system.linux.system.repo.saltstack_2016_3_trusty
-- system.linux.system.repo.mcp10
+- system.linux.system.repo.mcp.openstack
+- system.linux.system.repo.mcp.extra
+- system.linux.system.repo.saltstack.trusty
 - system.ceilometer.server.backend.influxdb
 - system.heka.ceilometer_collector.single
 

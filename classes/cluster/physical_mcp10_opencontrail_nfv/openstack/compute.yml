@@ -1,8 +1,9 @@
 classes:
 
-- system.linux.system.repo.mcp10
-
-- system.linux.system.repo.mcp_contrail
+- system.linux.system.repo.mcp.openstack
+- system.linux.system.repo.mcp.extra
+- system.linux.system.repo.saltstack.trusty
+- system.linux.system.repo.mcp.contrail
 - system.nova.compute.nfv.hugepages
 - system.nova.compute.nfv.cpu_pinning
 - system.nova.compute.cluster

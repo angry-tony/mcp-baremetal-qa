@@ -13,6 +13,7 @@ classes:
 parameters:
   _param:
     openstack_version: mitaka
+    apt_mk_version: nightly
     cluster_domain: mcp10-opencontrail.local
     stacklight_environment: ${_param:cluster_domain}
     reclass_data_revision: master
