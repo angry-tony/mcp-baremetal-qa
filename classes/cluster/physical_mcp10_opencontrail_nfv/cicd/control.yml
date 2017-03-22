@@ -1,4 +1,5 @@
 classes:
+  - system.linux.system.haveged
  #- system.glusterfs.server.volume.salt
   - system.glusterfs.client.cluster
   - system.glusterfs.client.volume.aptly
