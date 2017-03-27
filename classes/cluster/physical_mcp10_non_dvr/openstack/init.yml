@@ -197,7 +197,7 @@ parameters:
           address: ${_param:openstack_gateway_node01_address}
           names:
           - ${_param:openstack_gateway_node01_hostname}
-          - ${_param:openstack_gateway_node01_hostname}${_param:cluster_domain}
+          - ${_param:openstack_gateway_node01_hostname}.${_param:cluster_domain}
         gtw02:
           address: ${_param:openstack_gateway_node02_address}
           names:
