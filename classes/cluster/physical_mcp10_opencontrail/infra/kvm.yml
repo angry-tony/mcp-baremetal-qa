@@ -88,6 +88,12 @@ parameters:
           node:
             prx02:
               provider: kvm03.${_param:cluster_domain}
+            mdb01:
+              image: ${_param:salt_control_xenial_image}
+            mdb02:
+              image: ${_param:salt_control_xenial_image}
+            mdb03:
+              image: ${_param:salt_control_xenial_image}
   virt:
     nic:
       default:
