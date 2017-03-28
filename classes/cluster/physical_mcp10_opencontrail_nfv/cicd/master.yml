@@ -1,6 +1,0 @@
-classes:
-  - system.docker.swarm.master
-  - cluster.physical_mcp10_opencontrail_nfv.cicd.proxy
-  - cluster.physical_mcp10_opencontrail_nfv.cicd.control_init
-  - cluster.physical_mcp10_opencontrail_nfv.cicd.control
-  - cluster.physical_mcp10_opencontrail_nfv

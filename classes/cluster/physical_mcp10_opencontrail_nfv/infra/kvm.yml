@@ -19,7 +19,7 @@ classes:
 - system.salt.control.cluster.stacklight_telemetry_cluster
 - system.salt.control.cluster.openstack_dns_cluster
 - system.salt.control.cluster.cicd_control_cluster
-- cluster.physical_mcp10_opencontrail_nfv.cicd.kvm
+- cluster.physical_mcp10_opencontrail_nfv.cicd.gluster
 - cluster.physical_mcp10_opencontrail_nfv
 parameters:
   _param:
