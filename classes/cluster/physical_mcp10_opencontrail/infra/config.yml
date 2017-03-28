@@ -35,21 +35,21 @@ parameters:
   reclass:
     storage:
       node:
-        infra_compute_node01:
+        infra_kvm_node01:
           params:
             keepalived_vip_priority: 100
             linux_system_codename: xenial
             deploy_nic: enp2s0f0
             primary_first_nic: enp2s0f1
             primary_second_nic: enp129s0f0
-        infra_compute_node02:
+        infra_kvm_node02:
           params:
             keepalived_vip_priority: 101
             linux_system_codename: xenial
             deploy_nic: enp6s0f0
             primary_first_nic: enp6s0f1
             primary_second_nic: enp3s0f0
-        infra_compute_node03:
+        infra_kvm_node03:
           params:
             keepalived_vip_priority: 102
             linux_system_codename: xenial

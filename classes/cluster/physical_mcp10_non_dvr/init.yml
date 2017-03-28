@@ -37,16 +37,16 @@ parameters:
     openstack_gateway_node02_hostname: gtw02
     openstack_gateway_node03_hostname: gtw03
 
-    infra_compute_address: 10.167.4.240
-    infra_compute_node01_address: 10.167.4.241
-    infra_compute_node02_address: 10.167.4.242
-    infra_compute_node03_address: 10.167.4.243
-    infra_compute_node01_deploy_address: 172.16.164.141
-    infra_compute_node02_deploy_address: 172.16.164.142
-    infra_compute_node03_deploy_address: 172.16.164.143
-    infra_compute_node01_hostname: kvm01
-    infra_compute_node02_hostname: kvm02
-    infra_compute_node03_hostname: kvm03
+    infra_kvm_address: 10.167.4.240
+    infra_kvm_node01_address: 10.167.4.241
+    infra_kvm_node02_address: 10.167.4.242
+    infra_kvm_node03_address: 10.167.4.243
+    infra_kvm_node01_deploy_address: 172.16.164.141
+    infra_kvm_node02_deploy_address: 172.16.164.142
+    infra_kvm_node03_deploy_address: 172.16.164.143
+    infra_kvm_node01_hostname: kvm01
+    infra_kvm_node02_hostname: kvm02
+    infra_kvm_node03_hostname: kvm03
 
     # openstack service addresses
     openstack_proxy_address: 10.167.4.80
