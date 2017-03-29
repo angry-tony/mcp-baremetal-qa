@@ -90,3 +90,30 @@ parameters:
             control_address: ${_param:openstack_compute_node03_control_address}
             single_address: ${_param:openstack_compute_node03_single_address}
             tenant_address: ${_param:openstack_compute_node03_tenant_address}
+        storage_node01:
+          name: cep01
+          domain: ${_param:cluster_domain}
+          classes:
+          - cluster.${_param:cluster_name}.infra.storage
+          params:
+            salt_master_host: ${_param:reclass_config_master}
+            linux_system_codename: xenial
+            single_address: 10.167.4.91
+        storage_node02:
+          name: cep02
+          domain: ${_param:cluster_domain}
+          classes:
+          - cluster.${_param:cluster_name}.infra.storage
+          params:
+            salt_master_host: ${_param:reclass_config_master}
+            linux_system_codename: xenial
+            single_address: 10.167.4.92
+        storage_node03:
+          name: cep03
+          domain: ${_param:cluster_domain}
+          classes:
+          - cluster.${_param:cluster_name}.infra.storage
+          params:
+            salt_master_host: ${_param:reclass_config_master}
+            linux_system_codename: xenial
+            single_address: 10.167.4.93
