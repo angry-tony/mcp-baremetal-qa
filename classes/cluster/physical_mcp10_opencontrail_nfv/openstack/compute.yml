@@ -7,10 +7,10 @@ classes:
 - system.nova.compute.nfv.hugepages
 - system.nova.compute.nfv.cpu_pinning
 - system.nova.compute.cluster
-- system.opencontrail.compute.dpdk
 - system.opencontrail.compute.cluster
 - system.opencontrail.client.cluster
 - system.opencontrail.client.resource.virtual_router
+- system.opencontrail.compute.dpdk
 - system.ceilometer.agent.cluster
 - cluster.physical_mcp10_opencontrail_nfv
 parameters:
