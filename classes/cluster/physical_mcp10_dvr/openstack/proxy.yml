@@ -16,12 +16,11 @@ classes:
 - cluster.physical_mcp10_dvr.stacklight.proxy
 parameters:
   _param:
-    openstack_version: liberty
     keepalived_vip_interface: eth1
     keepalived_vip_virtual_router_id: 240
     nginx_proxy_ssl:
       enabled: true
-      authority: ${_param:salt_minion_ca_authority} 
+      authority: ${_param:salt_minion_ca_authority}
       engine: salt
       mode: secure
     cluster_vip_address: ${_param:openstack_proxy_address}

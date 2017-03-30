@@ -16,7 +16,6 @@ classes:
 - cluster.physical_mcp10_ovs_dpdk.stacklight.proxy
 parameters:
   _param:
-    openstack_version: liberty
     keepalived_vip_interface: eth1
     keepalived_vip_virtual_router_id: 240
     nginx_proxy_ssl:
