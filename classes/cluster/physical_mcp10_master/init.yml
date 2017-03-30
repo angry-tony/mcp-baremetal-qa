@@ -12,7 +12,14 @@ parameters:
     infra_config_hostname: cfg01
     # infra service addresses
     infra_config_address: 172.17.32.194
+    infra_compute_node01_address: 10.167.4.241
+    infra_compute_node02_address: 10.167.4.242
+    infra_compute_node03_address: 10.167.4.243
     #Interface definitions
+    reclass:
+      storage:
+        node:
+          name: default
     linux_dhcp_interface:
       enabled: true
       type: eth
@@ -27,4 +34,3 @@ parameters:
       name_servers:
         - 8.8.8.8
         - 8.8.4.4
-

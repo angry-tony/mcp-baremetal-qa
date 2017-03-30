@@ -1,5 +1,6 @@
 classes:
-- system.designate.server.cluster
+# - system.designate.server.cluster
+#  TODO: salt-formula-designate is not yet available
 - system.bind.server.single
 - cluster.physical_mcp10_opencontrail_nfv
 parameters:
