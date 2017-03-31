@@ -47,4 +47,7 @@ parameters:
           architectures: amd64
           key_id: 3FE869A9
           key_server: keyserver.ubuntu.com
-
+  glance:
+    server:
+      storage:
+        client_glance_key: ${_param:glance_storage_client_key}

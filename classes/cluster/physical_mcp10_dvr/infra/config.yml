@@ -1,5 +1,6 @@
 classes:
 - service.git.client
+- system.elasticsearch.client.single
 - system.linux.system.repo.mcp.salt
 - system.openssh.client.lab
 - system.salt.master.pkg
