@@ -25,8 +25,10 @@ parameters:
 
     # infra service addresses
     infra_config_address: 172.16.164.130
-    infra_config_deploy_address: 172.16.164.130
-
+    infra_config_deploy_address: 172.16.164.130 
+    infra_compute_node01_address: 10.167.4.241
+    infra_compute_node02_address: 10.167.4.242
+    infra_compute_node03_address: 10.167.4.243
     openstack_gateway_node01_address: 10.167.4.224
     openstack_gateway_node02_address: 10.167.4.225
     openstack_gateway_node03_address: 10.167.4.226
@@ -151,6 +153,10 @@ parameters:
     #ntp_strata_host2:
 
     # Interface definitions
+    reclass:
+      storage:
+        node:
+          name: default
     linux_dhcp_interface:
       enabled: true
       type: eth
