@@ -21,6 +21,15 @@ parameters:
     deploy_nic: eth0
     primary_first_nic: eth1
     primary_second_nic: eth2
+  nova:
+    compute:
+      ceph:
+        enabled: true
+        ephemeral: yes
+        rbd_pool: vms
+        secret_uuid: ${_param:nova_storage_secret_uuid}
+        client_cinder_key: ${_param:nova_storage_client_key}
+        rbd_user: nova
   linux:
     network:
       bridge: openvswitch
@@ -76,24 +85,15 @@ parameters:
           mtu: 1500
           address: ${_param:tenant_address}
           netmask: 255.255.255.0
-        floating-to-prv:
-          enabled: true
-          type: ovs_port
-          port_type: patch
-          bridge: br-floating
-          peer: prv-to-floating
-        prv-to-floating:
-          enabled: true
-          type: ovs_port
-          port_type: patch
-          bridge: br-prv
-          peer: floating-to-prv
-  nova:
-    compute:
-      ceph:
-        enabled: true
-        ephemeral: yes
-        rbd_pool: vms
-        secret_uuid: ${_param:nova_storage_secret_uuid}
-        client_cinder_key: ${_param:nova_storage_client_key}
-        rbd_user: nova
+        floating-to-prv:
+          enabled: true
+          type: ovs_port
+          port_type: patch
+          bridge: br-floating
+          peer: prv-to-floating
+        prv-to-floating:
+          enabled: true
+          type: ovs_port
+          port_type: patch
+          bridge: br-prv
+          peer: floating-to-prv
