@@ -92,6 +92,8 @@ parameters:
           domain: ${_param:cluster_domain}
           classes:
           - cluster.${_param:cluster_name}.openstack.compute
+          - cluster.${_param:cluster_name}.openstack.compute.dpdk
+          - cluster.${_param:cluster_name}.openstack.compute.sriov
           params:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: trusty
@@ -99,7 +101,12 @@ parameters:
             single_address: ${_param:openstack_compute_node03_single_address}
             compute_vrouter_dpdk_mac_address: 0c:c4:7a:33:27:23
             compute_vrouter_dpdk_pci: "'0000:0a:00.1'"
-            primary_first_nic: enp9s0f1
+            primary_first_nic: enp10s0f1
+            sriov_nic01_device_name: ens4f1
+            sriov_nic01_numvfs: 7
+            sriov_nic01_physical_network: physnet1
+            sriov_unsafe_interrupts: False
+
         openstack_gateway_node01:
           name: ${_param:opencontrail_gateway_node01_hostname}
           domain: ${_param:cluster_domain}
