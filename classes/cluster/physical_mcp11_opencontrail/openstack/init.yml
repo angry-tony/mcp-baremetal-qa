@@ -82,11 +82,6 @@ parameters:
     ceilometer_influxdb_password: password
     nova_version: ${_param:openstack_version}
     nova_service_host: ${_param:openstack_control_address}
-    nova_cpu_pinning: "1,2,3,4,5,7,8,9,10,11"
-    compute_hugepages_size: 1G
-    compute_hugepages_count: 40
-    compute_hugepages_mount: /mnt/hugepages_1G
-    compute_kernel_isolcpu: ${_param:nova_cpu_pinning}
     neutron_version: ${_param:openstack_version}
     aodh_version: ${_param:openstack_version}
     aodh_service_host: ${_param:openstack_telemetry_address}

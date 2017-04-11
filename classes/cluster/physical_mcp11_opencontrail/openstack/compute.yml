@@ -5,8 +5,6 @@ classes:
 - system.linux.system.repo.saltstack.xenial
 - system.linux.system.repo.mcp.contrail
 - system.nova.compute.cluster
-- system.nova.compute.nfv.hugepages
-- system.nova.compute.nfv.cpu_pinning
 - system.opencontrail.compute.cluster
 - system.opencontrail.client.cluster
 - system.opencontrail.client.resource.virtual_router
