@@ -3,6 +3,7 @@ classes:
 - system.linux.system.repo.mos10
 - system.linux.system.repo.mcp.extra
 - system.linux.system.repo.saltstack.xenial
+- system.linux.system.repo.ubuntu
 - service.keepalived.cluster.single
 - system.glusterfs.server.volume.glance
 - system.glusterfs.server.volume.keystone

@@ -1,6 +1,7 @@
 classes:
 - service.git.client
 - system.linux.system.repo.saltstack.xenial
+- system.linux.system.repo.ubuntu
 - system.elasticsearch.client.single
 - system.kibana.client.single
 - system.linux.system.repo.mcp.salt
