@@ -1,0 +1,100 @@
+classes:
+#- system.linux.system.repo.mcp.openstack
+- system.linux.system.repo.mos10
+- system.linux.system.repo.mcp.extra
+- system.linux.system.repo.saltstack.xenial
+- system.ceph.client.single
+- system.nova.compute.cluster
+- system.neutron.compute.cluster
+- system.ceilometer.agent.cluster
+- cluster.physical_mcp11_dvr.infra
+parameters:
+  _param:
+    cluster_vip_address: ${_param:openstack_control_address}
+    cluster_local_address: ${_param:control_address}
+    cluster_node01_hostname: ctl01
+    cluster_node01_address: ${_param:openstack_control_node01_address}
+    cluster_node02_hostname: ctl02
+    cluster_node02_address: ${_param:openstack_control_node02_address}
+    cluster_node03_hostname: ctl03
+    cluster_node03_address: ${_param:openstack_control_node03_address}
+    nova_vncproxy_url: http://${_param:openstack_proxy_address}:6080
+    deploy_nic: eth0
+    primary_first_nic: eth1
+    primary_second_nic: eth2
+  nova:
+    compute:
+      ceph:
+        enabled: true
+        ephemeral: yes
+        rbd_pool: vms
+        secret_uuid: ${_param:nova_storage_secret_uuid}
+        client_cinder_key: ${_param:nova_storage_client_key}
+        rbd_user: nova
+  linux:
+    network:
+      bridge: openvswitch
+      interface:
+        eth0:
+          enabled: true
+          proto: dhcp 
+          type: eth
+        primary_first_nic:
+          name: ${_param:primary_first_nic}
+          enabled: true
+          type: slave
+          mtu: 1500
+          master: bond0
+        primary_second_nic:
+          name: ${_param:primary_second_nic}
+          enabled: true
+          type: slave
+          mtu: 1500
+          master: bond0
+        bond0:
+          enabled: true
+          proto: manual
+          ovs_bridge: br-floating
+          ovs_type: OVSPort
+          type: bond
+          use_interfaces:
+          - ${_param:primary_first_nic}
+          - ${_param:primary_second_nic}
+          slaves: ${_param:primary_first_nic} ${_param:primary_second_nic}
+          mode: active-backup
+          mtu: 1500
+        br-floating:
+          enabled: true
+          type: ovs_bridge
+        br-prv:
+          enabled: true
+          type: ovs_bridge
+        br-mgmt:
+          enabled: true
+          type: ovs_port
+          bridge: br-floating
+          proto: static
+          ovs_options: tag=2402
+          address: ${_param:control_address}
+          netmask: 255.255.255.0
+        br-mesh:
+          enabled: true
+          type: ovs_port
+          bridge: br-floating
+          proto: static
+          ovs_option: tag=2403
+          mtu: 1500
+          address: ${_param:tenant_address}
+          netmask: 255.255.255.0
+        floating-to-prv:
+          enabled: true
+          type: ovs_port
+          port_type: patch
+          bridge: br-floating
+          peer: prv-to-floating
+        prv-to-floating:
+          enabled: true
+          type: ovs_port
+          port_type: patch
+          bridge: br-prv
+          peer: floating-to-prv
