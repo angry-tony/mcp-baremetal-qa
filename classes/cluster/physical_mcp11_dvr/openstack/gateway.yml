@@ -4,7 +4,7 @@ classes:
 - system.linux.system.repo.mcp.extra
 - system.linux.system.repo.saltstack.xenial
 - system.neutron.gateway.cluster
-- cluster.physical_mcp11_dvr
+- cluster.physical_mcp11_dvr.infra
 parameters:
   _param:
     interface_mtu: 1500

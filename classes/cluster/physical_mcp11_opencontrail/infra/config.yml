@@ -1,5 +1,6 @@
 classes:
 - system.linux.system.repo.mcp.salt
+- system.linux.system.repo.saltstack.xenial
 - system.openssh.client.lab
 - system.salt.master.pkg
 - system.salt.master.api

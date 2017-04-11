@@ -5,7 +5,7 @@ classes:
 - system.linux.system.repo.saltstack.xenial
 - system.rabbitmq.server.cluster
 - system.rabbitmq.server.vhost.openstack
-- cluster.physical_mcp11_dvr.infra
+- cluster.physical_mcp11_ovs_dpdk.infra
 parameters:
   _param:
     keepalived_vip_interface: ens3

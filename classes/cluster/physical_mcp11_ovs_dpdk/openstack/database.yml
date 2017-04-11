@@ -13,7 +13,7 @@ classes:
 - system.galera.server.database.keystone
 - system.galera.server.database.nova
 - system.galera.server.database.neutron
-- cluster.physical_mcp11_dvr.infra
+- cluster.physical_mcp11_ovs_dpdk.infra
 parameters:
   _param:
     keepalived_vip_interface: ens3

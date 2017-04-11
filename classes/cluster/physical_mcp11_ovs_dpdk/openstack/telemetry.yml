@@ -6,7 +6,8 @@ classes:
 - system.ceilometer.server.backend.influxdb
 - system.heka.ceilometer_collector.single
 - system.ceilometer.server.cluster
-- cluster.physical_mcp11_dvr.infra
+- system.aodh.server.cluster
+- cluster.physical_mcp11_ovs_dpdk.infra
 parameters:
   _param:
     keepalived_vip_interface: ens3
