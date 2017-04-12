@@ -7,6 +7,7 @@ classes:
 - system.ceph.client.single
 - system.memcached.server.single
 - system.keystone.server.cluster
+- system.keystone.server.wsgi
 - system.glance.control.cluster
 - system.glance.control.storage.ceph
 - system.neutron.control.openvswitch.cluster

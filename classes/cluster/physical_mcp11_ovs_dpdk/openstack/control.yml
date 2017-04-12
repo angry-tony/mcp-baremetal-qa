@@ -5,6 +5,7 @@ classes:
 - system.ceilometer.client
 - system.memcached.server.single
 - system.keystone.server.cluster
+- system.keystone.server.wsgi
 - system.glance.control.cluster
 - system.neutron.control.openvswitch.cluster
 - system.neutron.control.openvswitch.dpdk
