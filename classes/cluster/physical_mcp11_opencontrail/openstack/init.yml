@@ -59,7 +59,7 @@ parameters:
     openstack_gateway_node01_hostname: gtw01
     openstack_gateway_node01_address: 10.167.4.200
 
-    openstack_version: newton
+    openstack_version: ocata
     openstack_region: RegionOne
     admin_email: root@localhost
     galera_server_cluster_name: openstack_cluster

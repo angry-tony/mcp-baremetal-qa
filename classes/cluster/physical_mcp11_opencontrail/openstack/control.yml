@@ -7,6 +7,7 @@ classes:
 - system.neutron.control.opencontrail.cluster
 - system.memcached.server.single
 - system.ceilometer.client
+- system.ceilometer.client.neutron
 - system.keystone.server.cluster
 - system.keystone.server.wsgi
 - system.glance.control.cluster

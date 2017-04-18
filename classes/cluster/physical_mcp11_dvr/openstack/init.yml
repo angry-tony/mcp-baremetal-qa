@@ -2,7 +2,7 @@
 parameters:
   _param:
 
-    openstack_version: newton
+    openstack_version: ocata
 
     openstack_gateway_node01_address: 10.167.4.224
     openstack_gateway_node02_address: 10.167.4.225
