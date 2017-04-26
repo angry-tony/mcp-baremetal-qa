@@ -1,2 +1,52 @@
 classes:
 - system.mysql.client.single
+#- system.mysql.client.single_upgrade
+parameters:
+  backupninja:
+    client:
+      enabled: true
+      target:
+        engine: rsync
+        host: localhost
+        user: backupninja
+  # mysql:
+  #   server:
+  #     enabled: true
+  #     restore:
+  #       enabled:true
+  #       database:
+  #         nova:
+  #           dest_database: nova_upgrade
+  #         cinder:
+  #           dest_database: cinder_upgrade
+  mysql:
+    server:
+      enabled: true
+      database:
+        nova_upgrade:
+  #         encoding: 'utf8'
+  #         users:
+  #         - name: 'username'
+  #           password: 'password'
+  #           host: 'localhost'
+  #           rights: 'all privileges'
+          initial_data:
+  #          engine: backupninja
+  #          source: backup.host
+  #          host: original-host-name
+  #          database: nova
+
+  #     databases:
+  #     - nova_upgrade
+  #     database:
+  #       nova_upgrade:
+  #         initial_data:
+  #           database: nova
+
+      databases:
+      - name: nova_upgrade
+        initial_data:
+          engine: backupninja
+          source: backup.host
+          host: localhost
+          database: nova

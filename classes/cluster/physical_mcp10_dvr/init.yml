@@ -23,6 +23,8 @@ parameters:
     #local_repo_url: ip_address
     #linux_repo_refresh_db: True
 
+    openstack_upgrade_node01_address: 10.167.4.95
+
     # infra service addresses
     infra_config_address: 172.16.164.10 
     infra_config_deploy_address: 172.16.164.10

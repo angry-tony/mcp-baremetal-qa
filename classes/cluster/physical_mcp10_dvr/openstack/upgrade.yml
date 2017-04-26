@@ -1,0 +1,131 @@
+classes:
+- system.linux.system.repo.mcp.openstack
+- system.linux.system.repo.mcp.extra
+- system.linux.system.repo.saltstack.xenial
+#- system.ceilometer.client
+#- system.ceilometer.client.neutron
+#- system.ceph.client.single
+#- system.memcached.server.single
+#- system.keystone.server.cluster
+#- system.glance.control.cluster
+#- system.glance.control.storage.ceph
+#- system.neutron.control.openvswitch.cluster
+#- system.nova.control.cluster
+#- system.cinder.control.backend.ceph
+#- system.cinder.control.cluster
+#- system.cinder.volume.backend.ceph
+#- system.cinder.volume.single
+#- system.heat.server.cluster
+#- system.glusterfs.client.cluster
+#- system.glusterfs.client.volume.glance
+#- system.glusterfs.client.volume.keystone
+#- system.keystone.client.single
+#- system.keystone.client.service.aodh
+#- system.keystone.client.service.ceilometer
+#- system.keystone.client.service.nova21
+
+- system.mysql.client.single_upgrade
+- system.keystone.server.single
+- system.glance.control.single
+- system.neutron.control.openvswitch.single
+- system.cinder.control.single
+- system.cinder.volume.single
+- system.nova.control.single
+- system.keystone.client.single
+- system.keystone.client.service.nova21
+- system.rabbitmq.server.cluster
+- system.rabbitmq.server.vhost.openstack
+
+
+- cluster.physical_mcp10_dvr
+parameters:
+  _param:
+    keepalived_vip_interface: eth1
+    keepalived_vip_virtual_router_id: 50
+    cluster_vip_address: ${_param:openstack_control_address}
+    cluster_local_address: ${_param:single_address}
+    cluster_node01_hostname: ctl01
+    cluster_node01_address: ${_param:openstack_control_node01_address}
+    cluster_node02_hostname: ctl02
+    cluster_node02_address: ${_param:openstack_control_node02_address}
+    cluster_node03_hostname: ctl03
+    cluster_node03_address: ${_param:openstack_control_node03_address}
+    nova_vncproxy_url: http://${_param:openstack_proxy_address}:6080
+    openstack_message_queue_node01_address: ${_param:openstack_upgrade_node01_address}
+    openstack_control_address: ${_param:openstack_upgrade_node01_address}
+    public_address: ${_param:openstack_upgrade_node01_address}
+    cluster_public_protocol: http
+    openstack_version: ocata
+  neutron:
+    server:
+      backend:
+        mechanism:
+          sriov:
+            driver: sriovnicswitch    
+  linux:
+    network:
+      interface:
+        eth1: ${_param:linux_single_interface}
+    system:
+      repo:
+        glusterfs-ppa:
+          source: "deb http://ppa.launchpad.net/gluster/glusterfs-3.7/ubuntu trusty main"
+          architectures: amd64
+          key_id: 3FE869A9
+          key_server: keyserver.ubuntu.com
+  glance:
+    server:
+      storage:
+        client_glance_key: ${_param:glance_storage_client_key}
+
+###
+  cinder:
+    volume:
+      enabled: True
+      database:
+        host: ${_param:openstack_upgrade_node01_address}
+      glance:
+        host: ${_param:openstack_upgrade_node01_address}
+      message_queue:
+        members:
+          - host: ${_param:openstack_message_queue_node01_address}
+      identity:
+        host: ${_param:openstack_upgrade_node01_address}
+  keystone:
+    server:
+      database:
+        name: 'keystone_upgrade'
+  glance:
+    server:
+      database:
+        name: glance_upgrade
+  neutron:
+    server:
+      database:
+        name: neutron_upgrade
+  mysql:
+    server:
+      database:
+        neutron_upgrade:
+          encoding: utf8
+          users:
+          - name: neutron
+            password: ${_param:mysql_neutron_password}
+            host: '%'
+            rights: all
+          - name: neutron
+            password: ${_param:mysql_neutron_password}
+            host: ${_param:cluster_local_address}
+            rights: all
+  cinder:
+    controller:
+      database:
+        name: cinder_upgrade
+  cinder:
+    volume:
+      database:
+        name: cinder_upgrade
+  nova:
+    controller:
+      database:
+        name: nova_upgrade
