@@ -62,9 +62,6 @@ parameters:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: xenial
             single_address: ${_param:openstack_upgrade_node01_address}
-            keepalived_vip_priority: 103
-            opencontrail_database_id: 1
-            rabbitmq_cluster_role: master
         openstack_control_node01:
           classes:
           - cluster.${_param:cluster_name}.openstack.control_init

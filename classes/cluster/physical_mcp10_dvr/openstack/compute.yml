@@ -2,7 +2,7 @@ classes:
 - system.linux.system.repo.mcp.openstack
 - system.linux.system.repo.mcp.extra
 - system.linux.system.repo.saltstack.xenial
-- system.ceph.client.single
+#- system.ceph.client.single
 - system.nova.compute.cluster
 - system.neutron.compute.cluster
 - system.ceilometer.agent.cluster
@@ -21,15 +21,15 @@ parameters:
     deploy_nic: eth0
     primary_first_nic: eth1
     primary_second_nic: eth2
-  nova:
-    compute:
-      ceph:
-        enabled: true
-        ephemeral: yes
-        rbd_pool: vms
-        secret_uuid: ${_param:nova_storage_secret_uuid}
-        client_cinder_key: ${_param:nova_storage_client_key}
-        rbd_user: nova
+  # nova:
+  #   compute:
+  #     ceph:
+  #       enabled: true
+  #       ephemeral: yes
+  #       rbd_pool: vms
+  #       secret_uuid: ${_param:nova_storage_secret_uuid}
+  #       client_cinder_key: ${_param:nova_storage_client_key}
+  #       rbd_user: nova
   linux:
     network:
       bridge: openvswitch

@@ -87,12 +87,12 @@ parameters:
     glance_storage_client_key: AQAE+txY22AlHhAAggzU9QNBB+twEwPI7Ik1Iw==
     nova_storage_client_key: AQAY+txY6hfpFhAA18Hmw1WkCMTrUqzBzbWK1w==
     admin_storage_client_key: AQBu99xYnFP5LhAAhDHHEreeZfSUvKVf+6jWQg==
-    ceph_fsid: 74f17069-1997-4141-90e5-b47d9c64e71b
-    ceph_mon_initial_members: mon01,mon02,mon03
-    ceph_mon_host: 10.167.4.71,10.167.4.72,10.167.4.73
-    ceph_auth_client_required: cephx
-    ceph_public_network: 10.167.4.0/24
-    ceph_cluster_network: 10.167.4.0/24
+    # ceph_fsid: 74f17069-1997-4141-90e5-b47d9c64e71b
+    # ceph_mon_initial_members: mon01,mon02,mon03
+    # ceph_mon_host: 10.167.4.71,10.167.4.72,10.167.4.73
+    # ceph_auth_client_required: cephx
+    # ceph_public_network: 10.167.4.0/24
+    # ceph_cluster_network: 10.167.4.0/24
     cinder_storage_secret_uuid: 2d1fe96b-9fde-4ddd-a4da-b748c358a6ad
     nova_storage_secret_uuid: 43ef6e5b-3916-4191-812d-d0a65edba0df
     nova_storage_pool: vms
@@ -101,7 +101,6 @@ parameters:
     cinder_storage_user: volumes
     glance_storage_pool: images
     glance_storage_user: images
-    
   linux:
     network:
       host:
@@ -225,14 +224,14 @@ parameters:
           names:
           - ${_param:openstack_gateway_node02_hostname}
           - ${_param:openstack_gateway_node02_hostname}.${_param:cluster_domain}
-  ceph:
-    client:
-      keyring:
-        object:
-           key: ${_param:glance_storage_client_key}
-        cinder:
-          key: ${_param:cinder_storage_client_key}
-        nova:
-          key: ${_param:nova_storage_client_key}
-        admin:
-          key: ${_param:admin_storage_client_key}
+  # ceph:
+  #   client:
+  #     keyring:
+  #       object:
+  #          key: ${_param:glance_storage_client_key}
+  #       cinder:
+  #         key: ${_param:cinder_storage_client_key}
+  #       nova:
+  #         key: ${_param:nova_storage_client_key}
+  #       admin:
+  #         key: ${_param:admin_storage_client_key}
