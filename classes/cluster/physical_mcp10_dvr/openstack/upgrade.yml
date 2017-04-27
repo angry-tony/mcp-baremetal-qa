@@ -24,7 +24,7 @@ classes:
 #- system.keystone.client.service.ceilometer
 #- system.keystone.client.service.nova21
 
-- system.mysql.client.single_upgrade
+#- system.mysql.client.single_upgrade
 - system.keystone.server.single
 - system.glance.control.single
 - system.neutron.control.openvswitch.single
@@ -33,7 +33,7 @@ classes:
 - system.nova.control.single
 - system.keystone.client.single
 - system.keystone.client.service.nova21
-- system.rabbitmq.server.cluster
+- system.rabbitmq.server.single
 - system.rabbitmq.server.vhost.openstack
 
 
@@ -65,14 +65,7 @@ parameters:
   linux:
     network:
       interface:
-        eth1: ${_param:linux_single_interface}
-    system:
-      repo:
-        glusterfs-ppa:
-          source: "deb http://ppa.launchpad.net/gluster/glusterfs-3.7/ubuntu trusty main"
-          architectures: amd64
-          key_id: 3FE869A9
-          key_server: keyserver.ubuntu.com
+        ens3: ${_param:linux_single_interface}
   glance:
     server:
       storage:

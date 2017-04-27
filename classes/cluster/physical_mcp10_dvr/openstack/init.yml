@@ -41,7 +41,7 @@ parameters:
     aodh_version: ${_param:openstack_version}
     aodh_service_host: ${_param:openstack_telemetry_address}
     mysql_admin_user: root
-    mysql_admin_password: Fu6WOgDE5lyWF24l
+    mysql_admin_password: ${_param:galera_server_admin_password}
     mysql_aodh_password: 7pIjKrWZ54NPniqr
     mysql_cinder_password: YtOPt0gSdpddQgln
     mysql_ceilometer_password: h9tnYQhJIcA8F7s4
@@ -224,6 +224,11 @@ parameters:
           names:
           - ${_param:openstack_gateway_node02_hostname}
           - ${_param:openstack_gateway_node02_hostname}.${_param:cluster_domain}
+        upg01:
+          address: ${_param:openstack_upgrade_node01_address}
+          names:
+          - ${_param:openstack_upgrade_node01_hostname}
+          - ${_param:openstack_upgrade_node01_hostname}.${_param:cluster_domain}
   # ceph:
   #   client:
   #     keyring:

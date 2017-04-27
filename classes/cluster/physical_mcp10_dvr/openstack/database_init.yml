@@ -1,52 +1,76 @@
 classes:
 - system.mysql.client.single
-#- system.mysql.client.single_upgrade
+- system.mysql.client.single_upgrade
+#- system.galera.server.cluster_upgrade
 parameters:
+##### backup
   backupninja:
     client:
       enabled: true
       target:
         engine: rsync
-        host: localhost
+        host: ${_param:backupninja_backup_host}
         user: backupninja
-  # mysql:
-  #   server:
-  #     enabled: true
-  #     restore:
-  #       enabled:true
-  #       database:
-  #         nova:
-  #           dest_database: nova_upgrade
-  #         cinder:
-  #           dest_database: cinder_upgrade
+##### restore
   mysql:
     server:
       enabled: true
+      version: '5.6'
+      admin:
+        user: root
+        password: LUyITz1CvslaMcDh
       database:
-        nova_upgrade:
-  #         encoding: 'utf8'
-  #         users:
-  #         - name: 'username'
-  #           password: 'password'
-  #           host: 'localhost'
-  #           rights: 'all privileges'
+        aodh_upgrade:
           initial_data:
-  #          engine: backupninja
-  #          source: backup.host
-  #          host: original-host-name
-  #          database: nova
-
-  #     databases:
-  #     - nova_upgrade
-  #     database:
-  #       nova_upgrade:
-  #         initial_data:
-  #           database: nova
-
-      databases:
-      - name: nova_upgrade
-        initial_data:
-          engine: backupninja
-          source: backup.host
-          host: localhost
-          database: nova
+            engine: backupninja
+            source: ${_param:backupninja_backup_host}
+            host: ${linux:network:fqdn}
+            database: aodh
+        ceilometer_upgrade:
+          initial_data:
+            engine: backupninja
+            source: ${_param:backupninja_backup_host}
+            host: ${linux:network:fqdn}
+            database: ceilometer
+        cinder_upgrade:
+          initial_data:
+            engine: backupninja
+            source: ${_param:backupninja_backup_host}
+            host: ${linux:network:fqdn}
+            database: cinder
+        glance_upgrade:
+          initial_data:
+            engine: backupninja
+            source: ${_param:backupninja_backup_host}
+            host: ${linux:network:fqdn}
+            database: glance
+        grafana_upgrade:
+          initial_data:
+            engine: backupninja
+            source: ${_param:backupninja_backup_host}
+            host: ${linux:network:fqdn}
+            database: grafana
+        heat_upgrade:
+          initial_data:
+            engine: backupninja
+            source: ${_param:backupninja_backup_host}
+            host: ${linux:network:fqdn}
+            database: heat
+        keystone_upgrade:
+          initial_data:
+            engine: backupninja
+            source: ${_param:backupninja_backup_host}
+            host: ${linux:network:fqdn}
+            database: keystone
+        neutron_upgrade:
+          initial_data:
+            engine: backupninja
+            source: ${_param:backupninja_backup_host}
+            host: ${linux:network:fqdn}
+            database: neutron
+        nova_upgrade:
+          initial_data:
+            engine: backupninja
+            source: ${_param:backupninja_backup_host}
+            host: ${linux:network:fqdn}
+            database: nova

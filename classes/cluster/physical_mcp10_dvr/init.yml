@@ -25,6 +25,7 @@ parameters:
 
     openstack_upgrade_node01_hostname: upg01
     openstack_upgrade_node01_address: 10.167.4.95
+    backupninja_backup_host: ${_param:openstack_upgrade_node01_address}
 
     # infra service addresses
     infra_config_address: 172.16.164.10 
