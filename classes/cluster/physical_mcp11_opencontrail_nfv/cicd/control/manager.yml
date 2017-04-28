@@ -1,0 +1,4 @@
+classes:
+  - system.docker.swarm.manager
+  - cluster.physical_mcp11_opencontrail_nfv.infra
+  - cluster.physical_mcp11_opencontrail_nfv.cicd.control

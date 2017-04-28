@@ -1,0 +1,12 @@
+classes:
+- system.horizon.server.single
+- system.horizon.server.plugin.contrail
+- system.horizon.server.plugin.overrides
+- cluster.physical_mcp11_opencontrail_nfv.infra
+parameters:
+  _param:
+    horizon_site_branding: OpenStack Dashboard
+  linux:
+    network:
+      interface:
+        ens3: ${_param:linux_single_interface}
