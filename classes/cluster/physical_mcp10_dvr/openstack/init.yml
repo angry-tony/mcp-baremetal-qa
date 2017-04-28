@@ -82,6 +82,8 @@ parameters:
     #billometer_identity_host: ${_param:openstack_control_address}
     #billometer_identity_token: ${_param:keystone_service_token}
 
+    backupninja_backup_host: ${_param:openstack_upgrade_node01_address}
+
 
     cinder_storage_client_key: AQDP+dxYc/J7DhAAtLnx53dWCDxMFC5s29+ykg==
     glance_storage_client_key: AQAE+txY22AlHhAAggzU9QNBB+twEwPI7Ik1Iw==
