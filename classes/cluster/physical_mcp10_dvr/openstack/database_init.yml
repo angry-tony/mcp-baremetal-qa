@@ -1,7 +1,7 @@
 classes:
 - system.mysql.client.single
 - system.mysql.client.single_upgrade
-#- system.galera.server.cluster_upgrade
+- system.openssh.client.root
 parameters:
 ##### backup
   backupninja:
@@ -11,66 +11,11 @@ parameters:
         engine: rsync
         host: ${_param:backupninja_backup_host}
         user: backupninja
-##### restore
-  mysql:
-    server:
-      enabled: true
-      version: '5.6'
-      admin:
-        user: root
-        password: LUyITz1CvslaMcDh
-      database:
-        aodh_upgrade:
-          initial_data:
-            engine: backupninja
-            source: ${_param:backupninja_backup_host}
-            host: ${linux:network:fqdn}
-            database: aodh
-        ceilometer_upgrade:
-          initial_data:
-            engine: backupninja
-            source: ${_param:backupninja_backup_host}
-            host: ${linux:network:fqdn}
-            database: ceilometer
-        cinder_upgrade:
-          initial_data:
-            engine: backupninja
-            source: ${_param:backupninja_backup_host}
-            host: ${linux:network:fqdn}
-            database: cinder
-        glance_upgrade:
-          initial_data:
-            engine: backupninja
-            source: ${_param:backupninja_backup_host}
-            host: ${linux:network:fqdn}
-            database: glance
-        grafana_upgrade:
-          initial_data:
-            engine: backupninja
-            source: ${_param:backupninja_backup_host}
-            host: ${linux:network:fqdn}
-            database: grafana
-        heat_upgrade:
-          initial_data:
-            engine: backupninja
-            source: ${_param:backupninja_backup_host}
-            host: ${linux:network:fqdn}
-            database: heat
-        keystone_upgrade:
-          initial_data:
-            engine: backupninja
-            source: ${_param:backupninja_backup_host}
-            host: ${linux:network:fqdn}
-            database: keystone
-        neutron_upgrade:
-          initial_data:
-            engine: backupninja
-            source: ${_param:backupninja_backup_host}
-            host: ${linux:network:fqdn}
-            database: neutron
-        nova_upgrade:
-          initial_data:
-            engine: backupninja
-            source: ${_param:backupninja_backup_host}
-            host: ${linux:network:fqdn}
-            database: nova
+# ##### restore
+#   mysql:
+#     server:
+#       enabled: true
+#       version: '5.6'
+#       admin:
+#         user: root
+#         password: LUyITz1CvslaMcDh

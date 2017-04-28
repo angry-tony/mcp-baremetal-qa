@@ -2,30 +2,10 @@ classes:
 - system.linux.system.repo.mcp.openstack
 - system.linux.system.repo.mcp.extra
 - system.linux.system.repo.saltstack.xenial
-#- system.ceilometer.client
-#- system.ceilometer.client.neutron
-#- system.ceph.client.single
-#- system.memcached.server.single
-#- system.keystone.server.cluster
-#- system.glance.control.cluster
-#- system.glance.control.storage.ceph
-#- system.neutron.control.openvswitch.cluster
-#- system.nova.control.cluster
-#- system.cinder.control.backend.ceph
-#- system.cinder.control.cluster
-#- system.cinder.volume.backend.ceph
-#- system.cinder.volume.single
-#- system.heat.server.cluster
-#- system.glusterfs.client.cluster
-#- system.glusterfs.client.volume.glance
-#- system.glusterfs.client.volume.keystone
-#- system.keystone.client.single
-#- system.keystone.client.service.aodh
-#- system.keystone.client.service.ceilometer
-#- system.keystone.client.service.nova21
-
-#- system.mysql.client.single_upgrade
+- system.memcached.server.single
+- system.heat.server.single
 - system.keystone.server.single
+- system.keystone.server.wsgi
 - system.glance.control.single
 - system.neutron.control.openvswitch.single
 - system.cinder.control.single
@@ -35,8 +15,6 @@ classes:
 - system.keystone.client.service.nova21
 - system.rabbitmq.server.single
 - system.rabbitmq.server.vhost.openstack
-
-
 - cluster.physical_mcp10_dvr
 parameters:
   _param:
@@ -52,6 +30,8 @@ parameters:
     cluster_node03_address: ${_param:openstack_control_node03_address}
     nova_vncproxy_url: http://${_param:openstack_proxy_address}:6080
     openstack_message_queue_node01_address: ${_param:openstack_upgrade_node01_address}
+    cluster_local_address: ${_param:openstack_upgrade_node01_address}
+    cluster_vip_address: ${_param:openstack_upgrade_node01_address}
     openstack_control_address: ${_param:openstack_upgrade_node01_address}
     public_address: ${_param:openstack_upgrade_node01_address}
     cluster_public_protocol: http
@@ -70,55 +50,54 @@ parameters:
     server:
       storage:
         client_glance_key: ${_param:glance_storage_client_key}
-
-###
-  cinder:
-    volume:
-      enabled: True
-      database:
-        host: ${_param:openstack_upgrade_node01_address}
-      glance:
-        host: ${_param:openstack_upgrade_node01_address}
-      message_queue:
-        members:
-          - host: ${_param:openstack_message_queue_node01_address}
-      identity:
-        host: ${_param:openstack_upgrade_node01_address}
   keystone:
     server:
       database:
+        host: ${_param:openstack_database_address}
         name: 'keystone_upgrade'
   glance:
     server:
       database:
+        host: ${_param:openstack_database_address}
         name: glance_upgrade
   neutron:
     server:
       database:
+        host: ${_param:openstack_database_address}
         name: neutron_upgrade
-  mysql:
-    server:
-      database:
-        neutron_upgrade:
-          encoding: utf8
-          users:
-          - name: neutron
-            password: ${_param:mysql_neutron_password}
-            host: '%'
-            rights: all
-          - name: neutron
-            password: ${_param:mysql_neutron_password}
-            host: ${_param:cluster_local_address}
-            rights: all
   cinder:
     controller:
       database:
+        host: ${_param:openstack_database_address}
         name: cinder_upgrade
-  cinder:
     volume:
       database:
         name: cinder_upgrade
+      glance:
+        host: ${_param:openstack_upgrade_node01_address}
+      message_queue:
+        members:
+          - host: ${_param:single_address}
+      identity:
+        host: ${_param:single_address}
   nova:
     controller:
       database:
+        host: ${_param:openstack_database_address}
         name: nova_upgrade
+  heat:
+    server:
+      database:
+        engine: mysql
+        host: ${_param:openstack_database_address}
+        port: 3306
+        name: heat_upgrade
+        user: heat
+  backupninja:
+    server:
+      enabled: true
+      rdiff: true
+      key:
+        dbs01.mcp10-dvr.local:
+          enabled: true
+          key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCzLUiHKAjfFXiZ3fsgx35uXF6VivfC5WFafu4QMalxmj6W+s277oCfdWA8Du5f1wtQXM73VQ5nHkXhM2UIfUMarsyhXK+BxKVrcgEBNHdKlDytaecUPyuOxTDdGWhN/DPv5/vL8NYWweEYBbNbLgU0Td7Rvm52TUXKThIDjeF7XDxX4ShXWipBSwU4boOUBtR8KWfga8fsqeBN+eacuAQFR3MrrOfVvAuWW6Bsf047cmd+V6Qv0raoW73Nu4M/ZAdTsaR5k62a0cHsSRoi3hCmNRqw+CZaQi8prQU6t26eWPEtznjp5EkPF+LLh8LxUoCfWqWT+Lxe8QQwT1nx/LCN jiri@jiri-Mirantis
