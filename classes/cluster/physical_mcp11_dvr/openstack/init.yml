@@ -141,7 +141,7 @@ parameters:
     horizon_secret_key: I2WVmxZ0oNmGSssMZTOyP4l5GvzhyVub90sk4vEMdpxCbsfZ2ggGp4ejxIhvtld7
     horizon_identity_host: ${_param:openstack_control_address}
     horizon_identity_encryption: none
-    horizon_identity_version: 3
+    horizon_identity_version: 2
     mongodb_server_replica_set: ceilometer
     mongodb_ceilometer_password: aKBcZkA3aCcgtcGX
     mongodb_admin_password: U7sQxo0UcBbXFKb2
