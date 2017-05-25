@@ -16,7 +16,10 @@ classes:
 - system.salt.control.cluster.stacklight_server_cluster
 - system.salt.control.cluster.stacklight_log_cluster
 - system.salt.control.cluster.stacklight_telemetry_cluster
-- cluster.physical_mcp10_dvr
+
+- system.salt.control.cluster.openstack_upgrade_single
+
+- cluster.physical_mcp11_dvr_upgrade
 parameters:
   _param:
     cluster_vip_address: ${_param:infra_kvm_address}
@@ -32,6 +35,11 @@ parameters:
     control:
       size:
       # Default production sizing
+        openstack.upgrade:
+          cpu: 6
+          ram: 12288
+          disk_profile: medium
+          net_profile: default
         openstack.control:
           cpu: 4
           ram: 8192
@@ -87,11 +95,20 @@ parameters:
           node:
             prx02:
               provider: kvm03.${_param:cluster_domain}
+              image: ${_param:salt_control_xenial_image}
+            prx01:
+              image: ${_param:salt_control_xenial_image}
             mdb01:
               image: ${_param:salt_control_xenial_image}
             mdb02:
               image: ${_param:salt_control_xenial_image}
             mdb03:
+              image: ${_param:salt_control_xenial_image}
+            ctl01:
+              image: ${_param:salt_control_xenial_image}
+            ctl02:
+              image: ${_param:salt_control_xenial_image}
+            ctl03:
               image: ${_param:salt_control_xenial_image}
 
   virt:

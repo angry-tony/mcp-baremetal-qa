@@ -9,32 +9,22 @@ classes:
 - system.glance.control.single
 - system.neutron.control.openvswitch.single
 - system.cinder.control.single
-- system.cinder.volume.single
+- system.cinder.volume.local
 - system.nova.control.single
 - system.keystone.client.single
 - system.keystone.client.service.nova21
 - system.rabbitmq.server.single
 - system.rabbitmq.server.vhost.openstack
-- cluster.physical_mcp10_dvr
+- system.backupninja.server.single
+- cluster.physical_mcp11_dvr_upgrade
 parameters:
   _param:
-    keepalived_vip_interface: eth1
-    keepalived_vip_virtual_router_id: 50
-    cluster_vip_address: ${_param:openstack_control_address}
-    cluster_local_address: ${_param:single_address}
-    cluster_node01_hostname: ctl01
-    cluster_node01_address: ${_param:openstack_control_node01_address}
-    cluster_node02_hostname: ctl02
-    cluster_node02_address: ${_param:openstack_control_node02_address}
-    cluster_node03_hostname: ctl03
-    cluster_node03_address: ${_param:openstack_control_node03_address}
-    nova_vncproxy_url: http://${_param:openstack_proxy_address}:6080
+    nova_vncproxy_url: https://${_param:cluster_public_host}:6080
     openstack_message_queue_node01_address: ${_param:openstack_upgrade_node01_address}
     cluster_local_address: ${_param:openstack_upgrade_node01_address}
     cluster_vip_address: ${_param:openstack_upgrade_node01_address}
     openstack_control_address: ${_param:openstack_upgrade_node01_address}
     public_address: ${_param:openstack_upgrade_node01_address}
-    cluster_public_protocol: http
     openstack_version: ocata
   neutron:
     server:
@@ -72,14 +62,8 @@ parameters:
         name: cinder_upgrade
     volume:
       database:
+        host: ${_param:openstack_database_address}
         name: cinder_upgrade
-      glance:
-        host: ${_param:openstack_upgrade_node01_address}
-      message_queue:
-        members:
-          - host: ${_param:single_address}
-      identity:
-        host: ${_param:single_address}
   nova:
     controller:
       database:
@@ -93,11 +77,3 @@ parameters:
         port: 3306
         name: heat_upgrade
         user: heat
-  backupninja:
-    server:
-      enabled: true
-      rdiff: true
-      key:
-        dbs01.mcp10-dvr.local:
-          enabled: true
-          key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCzLUiHKAjfFXiZ3fsgx35uXF6VivfC5WFafu4QMalxmj6W+s277oCfdWA8Du5f1wtQXM73VQ5nHkXhM2UIfUMarsyhXK+BxKVrcgEBNHdKlDytaecUPyuOxTDdGWhN/DPv5/vL8NYWweEYBbNbLgU0Td7Rvm52TUXKThIDjeF7XDxX4ShXWipBSwU4boOUBtR8KWfga8fsqeBN+eacuAQFR3MrrOfVvAuWW6Bsf047cmd+V6Qv0raoW73Nu4M/ZAdTsaR5k62a0cHsSRoi3hCmNRqw+CZaQi8prQU6t26eWPEtznjp5EkPF+LLh8LxUoCfWqWT+Lxe8QQwT1nx/LCN jiri@jiri-Mirantis

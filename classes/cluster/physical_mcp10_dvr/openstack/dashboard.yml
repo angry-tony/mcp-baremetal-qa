@@ -7,8 +7,4 @@ parameters:
   linux:
     network:
       interface:
-        ens3: ${_param:linux_single_interface}
-  # horizon:
-  #   server:
-  #     api_versions:
-  #       image: 2
+        eth1: ${_param:linux_single_interface}

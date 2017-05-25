@@ -1,7 +1,7 @@
 classes:
 - system.linux.system.repo.mcp.openstack
 - system.linux.system.repo.mcp.extra
-- system.linux.system.repo.saltstack.trusty
+- system.linux.system.repo.saltstack.xenial
 - system.linux.system.repo.ubuntu
 - system.nginx.server.single
 - system.nginx.server.proxy.openstack_api
@@ -11,12 +11,12 @@ classes:
 - system.salt.minion.cert.proxy
 - system.sphinx.server.doc.reclass
 - service.keepalived.cluster.single
-- cluster.physical_mcp10_dvr
-- cluster.physical_mcp10_dvr.openstack.dashboard
-- cluster.physical_mcp10_dvr.stacklight.proxy
+- cluster.physical_mcp11_dvr_upgrade
+- cluster.physical_mcp11_dvr_upgrade.openstack.dashboard
+- cluster.physical_mcp11_dvr_upgrade.stacklight.proxy
 parameters:
   _param:
-    keepalived_vip_interface: eth1
+    keepalived_vip_interface: ens3
     keepalived_vip_virtual_router_id: 240
     nginx_proxy_ssl:
       enabled: true
@@ -28,4 +28,4 @@ parameters:
   linux:
     network:
       interface:
-        eth1: ${_param:linux_single_interface}
+        ens3: ${_param:linux_single_interface}

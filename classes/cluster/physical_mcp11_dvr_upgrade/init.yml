@@ -5,23 +5,27 @@ classes:
 - system.openssh.server.team.lab
 - system.openssh.server.team.tcpcloud
 - system.openssh.server.team.mcp_qa
-- cluster.physical_mcp10_dvr.infra
-- cluster.physical_mcp10_dvr.openstack
-- cluster.physical_mcp10_dvr.stacklight
-- cluster.physical_mcp10_dvr.stacklight.client
+- cluster.physical_mcp11_dvr_upgrade.infra
+- cluster.physical_mcp11_dvr_upgrade.openstack
+- cluster.physical_mcp11_dvr_upgrade.stacklight
+- cluster.physical_mcp11_dvr_upgrade.stacklight.client
 parameters:
   _param:
-    openstack_version: mitaka
+    openstack_version: ocata
     apt_mk_version: nightly
     cluster_domain: mcp10-dvr.local
     stacklight_environment: ${_param:cluster_domain}
     reclass_data_revision: master
-    cluster_name: physical_mcp10_dvr
+    cluster_name: physical_mcp11_dvr_upgrade
     cluster_public_host: 10.167.4.80
     infra_config_hostname: cfg01
     ##local repositiry for aptly
     #local_repo_url: ip_address
     #linux_repo_refresh_db: True
+
+    openstack_upgrade_node01_hostname: upg01
+    openstack_upgrade_node01_address: 10.167.4.95
+    backupninja_backup_host: ${_param:openstack_upgrade_node01_address}
 
     # infra service addresses
     infra_config_address: 172.16.164.10 

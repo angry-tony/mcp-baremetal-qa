@@ -2,34 +2,16 @@ classes:
 - system.linux.system.repo.mcp.openstack
 - system.linux.system.repo.mcp.extra
 - system.linux.system.repo.saltstack.xenial
-- system.ceph.client.single
-- system.nova.compute.cluster
-- system.neutron.compute.cluster
-- system.ceilometer.agent.cluster
-- cluster.physical_mcp10_dvr
+- system.neutron.gateway.cluster
+- cluster.physical_mcp11_dvr_upgrade
 parameters:
   _param:
+    interface_mtu: 1500
     cluster_vip_address: ${_param:openstack_control_address}
-    cluster_local_address: ${_param:control_address}
-    cluster_node01_hostname: ctl01
-    cluster_node01_address: ${_param:openstack_control_node01_address}
-    cluster_node02_hostname: ctl02
-    cluster_node02_address: ${_param:openstack_control_node02_address}
-    cluster_node03_hostname: ctl03
-    cluster_node03_address: ${_param:openstack_control_node03_address}
-    nova_vncproxy_url: https://${_param:cluster_public_host}:6080
     deploy_nic: eth0
     primary_first_nic: eth1
     primary_second_nic: eth2
-  nova:
-    compute:
-      ceph:
-        enabled: true
-        ephemeral: yes
-        rbd_pool: vms
-        secret_uuid: ${_param:nova_storage_secret_uuid}
-        client_cinder_key: ${_param:nova_storage_client_key}
-        rbd_user: nova
+
   linux:
     network:
       bridge: openvswitch
@@ -74,26 +56,26 @@ parameters:
           bridge: br-floating
           proto: static
           ovs_options: tag=2402
-          address: ${_param:control_address}
+          address: ${_param:single_address}
           netmask: 255.255.255.0
         br-mesh:
           enabled: true
           type: ovs_port
           bridge: br-floating
           proto: static
-          ovs_option: tag=2403
+          ovs_option: tage=2403
           mtu: 1500
           address: ${_param:tenant_address}
           netmask: 255.255.255.0
-        floating-to-prv:
-          enabled: true
-          type: ovs_port
-          port_type: patch
-          bridge: br-floating
-          peer: prv-to-floating
-        prv-to-floating:
-          enabled: true
-          type: ovs_port
-          port_type: patch
-          bridge: br-prv
-          peer: floating-to-prv
+        floating-to-prv:
+          enabled: true
+          type: ovs_port
+          port_type: patch
+          bridge: br-floating
+          peer: prv-to-floating
+        prv-to-floating:
+          enabled: true
+          type: ovs_port
+          port_type: patch
+          bridge: br-prv
+          peer: floating-to-prv

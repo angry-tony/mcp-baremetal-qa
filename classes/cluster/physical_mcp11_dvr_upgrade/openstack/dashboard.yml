@@ -1,0 +1,14 @@
+classes:
+- system.horizon.server.single
+- cluster.physical_mcp11_dvr_upgrade
+parameters:
+  _param:
+    horizon_site_branding: OpenStack Dashboard
+  linux:
+    network:
+      interface:
+        ens3: ${_param:linux_single_interface}
+  # horizon:
+  #   server:
+  #     api_versions:
+  #       image: 2

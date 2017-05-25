@@ -1,0 +1,23 @@
+classes:
+- system.mysql.client.single
+- system.mysql.client.single_upgrade
+- system.openssh.client.root
+- system.backupninja.client.single
+parameters:
+  _param:
+    backupninja_backup_host: ${_param:openstack_upgrade_node01_address}
+  # backupninja:
+  #   client:
+  #     enabled: true
+  #     target:
+  #       engine: rsync
+  #       host: ${_param:backupninja_backup_host}
+  #       user: backupninja
+# ##### restore
+#   mysql:
+#     server:
+#       enabled: true
+#       version: '5.6'
+#       admin:
+#         user: root
+#         password: LUyITz1CvslaMcDh
