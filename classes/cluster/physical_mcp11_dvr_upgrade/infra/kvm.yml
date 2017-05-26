@@ -160,7 +160,7 @@ parameters:
           use_interfaces:
           - bond0
           mtu: 1500
-        bond0.2403:
+        bond0.2404:
           enabled: true
           proto: manual
           type: vlan
@@ -191,7 +191,7 @@ parameters:
           type: bridge
           proto: manual
           use_interfaces:
-          - bond0.2403
+          - bond0.2404
     system:     
       user:
         root:

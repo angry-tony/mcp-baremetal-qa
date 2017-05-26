@@ -81,7 +81,7 @@ parameters:
           type: ovs_port
           bridge: br-floating
           proto: static
-          ovs_option: tag=2403
+          ovs_option: tag=2404
           mtu: 1500
           address: ${_param:tenant_address}
           netmask: 255.255.255.0

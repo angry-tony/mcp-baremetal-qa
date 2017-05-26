@@ -119,3 +119,9 @@ parameters:
             salt_master_host: ${_param:reclass_config_master}
             linux_system_codename: xenial
             single_address: 10.167.4.93
+        openstack_gateway_node01:
+          params:
+            external_address: ${_param:openstack_gateway_node01_external_address}
+        openstack_gateway_node02:
+          params:
+            external_address: ${_param:openstack_gateway_node02_external_address}
