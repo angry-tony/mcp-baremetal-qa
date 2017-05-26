@@ -1,0 +1,8 @@
+classes:
+- system.nginx.server.single
+- system.nginx.server.proxy.monitoring.prometheus_server
+- system.nginx.server.proxy.monitoring.prometheus_alertmanager
+- cluster.physical-mcp11-k8s-contrail.infra
+parameters:
+  _param:
+    cluster_public_host: ${_param:prometheus_control_address}
